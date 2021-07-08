@@ -1,0 +1,72 @@
+<div class="container">
+    <h1>Pagina: <small> Trabajador {{trabajador?.nombre1}} </small></h1>
+    <br>
+    <div fxLayout="row" fxLayoutGap="40px" fxLayout.xs="column">
+
+        <form ngNativeValidate (ngSubmit)="guardar($event)" [formGroup]="form" fxFlex="50" fxLayout="column">
+
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+                <mat-form-field fxFlex="100" fxLayout.xs="column">
+                    <mat-label>Apellido Paterno</mat-label>
+                    <input [ngModel]="trabajador?.apPaterno" matInput type="text" formControlName="ApPaterno" required>
+                </mat-form-field>
+
+                <mat-form-field fxFlex="100">
+                    <mat-label>Apellido Materno</mat-label>
+                    <input [ngModel]="trabajador?.apMaterno" matInput type="text" formControlName="ApMaterno" required>
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+                <mat-form-field fxFlex="100" fxLayout.xs="column">
+                    <mat-label>Primer Nombre</mat-label>
+                    <input [ngModel]="trabajador?.nombre1" matInput type="text" formControlName="Nombre1" required>
+                </mat-form-field>
+
+                <mat-form-field fxFlex="100">
+                    <mat-label>Segundo Nombre</mat-label>
+                    <input [ngModel]="trabajador?.nombre2" matInput type="text" formControlName="Nombre2" required>
+                </mat-form-field>
+            </div>
+
+
+            <mat-form-field appearance="fill">
+                <mat-label>Fecha de Nacimiento</mat-label>
+                <input [ngModel]="trabajador?.fechaNacimiento" formControlName="FechaNacimiento" matInput [matDatepicker]="picker2">
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+
+            
+            <mat-form-field appearance="fill">
+                <mat-label>Fecha de Ingreso</mat-label>
+                <input [ngModel]="trabajador?.fechaIngreso" formControlName="FechaIngreso" matInput [matDatepicker]="picker">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="100" fxLayout.xs="column">
+                <mat-label>DNI</mat-label>
+                <input [ngModel]="trabajador?.dni" matInput type="text" formControlName="Dni" required>
+            </mat-form-field>
+
+            <br>
+
+
+            <div fxLayout>
+                <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid" class="espacio">
+                    <mat-icon *ngIf="!trabajador?.personalId">save</mat-icon>
+                    <mat-icon *ngIf="trabajador?.personalId">edit</mat-icon>
+                </button>
+                <button mat-raised-button color="warn" matTooltip="Regresar" [routerLink]="['/home']" >
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+
+                <span class="spacer"></span>
+            </div>
+
+
+        </form>
+
+    </div>
+</div>

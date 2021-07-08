@@ -1,0 +1,61 @@
+
+<div class="container">
+    <mat-toolbar>
+      <span>Trabajadores</span>
+    </mat-toolbar>
+    <div class="demo-button-container" style="text-align:right;">
+      <button mat-raised-button [routerLink]="['/personal','nuevo']" class="demo-button" color="primary">
+        Crear Trabajador
+      </button>
+    </div>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+      
+        <!-- Position Column -->
+        <ng-container matColumnDef="ID">
+          <th mat-header-cell *matHeaderCellDef class="centrado"> No. Documento </th>
+          <td mat-cell *matCellDef="let element" class="centrado" > {{element.dni }} </td>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="NombreCompleto">
+          <th mat-header-cell *matHeaderCellDef class="centrado"> Nombre Completo </th>
+          <td mat-cell *matCellDef="let element" class="centrado" > {{element.nombreCompleto}} </td>
+        </ng-container>
+      
+        <!-- Weight Column -->
+        <ng-container matColumnDef="FechaNacimiento">
+          <th mat-header-cell *matHeaderCellDef class="centrado"> Fecha Nacimiento </th>
+          <td mat-cell *matCellDef="let element" class="centrado" > {{element.fechaNacimiento | date: 'shortDate'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="FechaIngreso">
+          <th mat-header-cell *matHeaderCellDef class="centrado"> Fecha Ingreso </th>
+          <td mat-cell *matCellDef="let element" class="centrado" > {{element.fechaIngreso | date: 'shortDate'}} </td>
+        </ng-container>
+      
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="Acciones">
+          <th mat-header-cell *matHeaderCellDef>  </th>
+          <td mat-cell *matCellDef="let element"> 
+            <a>
+              <button mat-button color="warn" [routerLink]="['/hijos',element.personalId]">
+                Ver Hijos
+              </button>
+            </a>
+            <a class="pointer" style="color: blueviolet;" matTooltip="Editar" [routerLink]="['/personal',element.personalId]">
+              <mat-icon>edit</mat-icon>
+            </a>
+            <a class="pointer" style="color: aquamarine;" matTooltip="Borrar" (click)="borrar(element.personalId, element.nombre1)">
+              <mat-icon>delete</mat-icon>
+            </a>
+          </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+</div>
